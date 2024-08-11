@@ -1,18 +1,16 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld :msg="title"/>
 </template>
 
-<script>
+<script setup>
 import HelloWorld from './components/HelloWorld.vue'
+ import { ref } from 'vue'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+
+const title = ref("Clock Safety")
 </script>
+
 
 <style>
 #app {
