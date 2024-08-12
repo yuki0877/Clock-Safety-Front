@@ -7,7 +7,11 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       "/api/v1": {
-        target: "https://clock-safety.onrender.com",
+        target: process.env.VUE_APP_API_BASE_URL,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/v1': ''
+        }
       }
     }
   }

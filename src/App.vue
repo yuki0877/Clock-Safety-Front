@@ -18,7 +18,7 @@ const msg = ref("")
 
 
 const test = () => {
-  axios.get("/api/v1/tests").then((response) => {
+  axios.get(`/api/v1/tests`).then((response) => {
     msg.value = response.data
 })
 }
