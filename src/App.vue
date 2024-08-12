@@ -16,9 +16,14 @@ import HelloWorld from './components/HelloWorld.vue'
 const title = ref("Clock Safety")
 const msg = ref("")
 
-
 const test = () => {
-  axios.get(`/api/v1/tests`).then((response) => {
+  axios.get(`/api/v1/tests`,{
+    headers: {
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*",
+    },
+    withCredentials: true
+  }).then((response) => {
     msg.value = response.data
 })
 }
