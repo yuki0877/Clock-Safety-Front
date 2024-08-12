@@ -17,6 +17,7 @@ const title = ref("Clock Safety")
 const msg = ref("")
 
 const test = () => {
+  console.log(axios.defaults.baseURL);
   axios.get(`/api/v1/tests`,{
     headers: {
       'Content-Type': 'application/json',
