@@ -7,7 +7,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       "/api/v1": {
-        target: "http://localhost:3000",
+        target: "https://clock-safety.onrender.com",
       }
     }
   }
