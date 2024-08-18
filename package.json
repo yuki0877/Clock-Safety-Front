@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
+    "prod": "vue-cli-service serve --mode producution",
     "build": "vue-cli-service build",
     "dev-build": "vue-cli-service build --mode development",
     "prod-build": "vue-cli-service build --mode producution",
+    "prod-http": "npm run build -- --mode production && http-server docs",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^1.7.3",
     "core-js": "^3.8.3",
+    "http-server": "^14.1.1",
     "vue": "^3.2.13"
   },
   "devDependencies": {

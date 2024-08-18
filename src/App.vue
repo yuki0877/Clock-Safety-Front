@@ -17,6 +17,8 @@ const title = ref("Clock Safety")
 const msg = ref("")
 
 const test = () => {
+  console.log("aaa");
+  console.log(process.env.VUE_APP_API_BASE_URL);
   console.log(axios.defaults.baseURL);
   axios.get(`/api/v1/tests`,{
     headers: {
@@ -25,6 +27,7 @@ const test = () => {
     },
     withCredentials: true
   }).then((response) => {
+    console.log(response.data);
     msg.value = response.data
 })
 }
