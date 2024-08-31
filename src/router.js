@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+// import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter,createWebHashHistory } from 'vue-router'
 import HelthPage from './components/HelthPage.vue'
 import TopPage from './components/TopPage.vue'
 import AnomaliesPage from './components/AnomaliesPage.vue'
@@ -14,7 +15,7 @@ const routes = [
 ]
 console.log(process.env.NODE_ENV);
 const router = createRouter({
-   history: createWebHistory(process.env.NODE_ENV === 'production' ? "/Clock-Safety-Front/" : "/"),
+   history: createWebHashHistory(process.env.NODE_ENV === 'production' ? "/Clock-Safety-Front/" : "/"),
   routes,
 })
 
