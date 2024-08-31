@@ -12,7 +12,7 @@ const routes = [
   { path: '/privacypolicy', name: 'privacypolicy', component: PrivacyPolicyPage },
   { path: '/termsofservice', name: 'termsofservice', component: TermsofServicePage },
 ]
-
+console.log(process.env.NODE_ENV);
 const router = createRouter({
    history: createWebHistory(process.env.NODE_ENV === 'production' ? "/Clock-Safety-Front/" : "/"),
   routes,
