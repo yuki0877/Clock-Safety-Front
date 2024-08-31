@@ -6,6 +6,7 @@
 
       <!-- メインコンテンツ -->
       <div class="main-content">
+        <button @click="$router.push({name: 'helth_index'})" >テスト</button>
         <!-- <img alt="15362.png" src="../assets/15362.png" class="image"> -->
         <div>
           <h1 class="large-text">Clock Safety</h1>
