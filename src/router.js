@@ -14,7 +14,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/Clock-Safety-Front/'),
+   history: createWebHistory(process.env.NODE_ENV === 'production' ? "/Clock-Safety-Front" : "/"),
   routes,
 })
 
