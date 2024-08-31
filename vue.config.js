@@ -3,7 +3,7 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   outputDir: 'docs',
-  publicPath: process.env.NODE_ENV === 'production' ? '/Clock-Safety-Front' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/Clock-Safety-Front/' : '/',
   devServer: {
     proxy: {
       "/api/v1": {
