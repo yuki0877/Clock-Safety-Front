@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
-
+console.log("小玉");
+console.log(process.env.NODE_ENV);
 module.exports = defineConfig({
   transpileDependencies: true,
   outputDir: 'docs',

@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "prod": "vue-cli-service serve --mode producution",
+    "prod": "vue-cli-service serve --mode production",
     "build": "vue-cli-service build",
     "dev-build": "vue-cli-service build --mode development",
-    "prod-build": "vue-cli-service build --mode producution",
+    "prod-build": "vue-cli-service build --mode production",
     "prod-http": "npm run build -- --mode production && http-server docs",
     "lint": "vue-cli-service lint"
   },
