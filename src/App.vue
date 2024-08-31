@@ -1,39 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld :msg="title"/>
-  <h2 style="color: red;">
-    {{ msg }}
-  </h2>
+  <RouterView />
 </template>
 
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
- import { ref, onMounted } from 'vue'
- import axios from 'axios'
- axios.defaults.withCredentials = true
+// import HelloWorld from './components/HelloWorld.vue'
+ import { onMounted } from 'vue'
+//  import axios from 'axios'
+ import 'normalize.css'
+//  axios.defaults.withCredentials = true
 
 
-const title = ref("Clock Safety")
-const msg = ref("")
+// const title = ref("Clock Safety")
+// const msg = ref("")
 
-const test = () => {
-  console.log("aaa");
-  console.log(process.env.VUE_APP_API_BASE_URL);
-  console.log(axios.defaults.baseURL);
-  axios.get(`/api/v1/tests`,{
-    headers: {
-      'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin": "*",
-    },
-    withCredentials: true
-  }).then((response) => {
-    console.log(response.data);
-    msg.value = response.data
-})
-}
+// const test = () => {
+//   console.log(process.env.VUE_APP_API_BASE_URL);
+//   console.log(process.env.VUE_APP_API_BASE_URL);
+//   console.log(axios.defaults.baseURL);
+//   axios.get(`/api/v1/tests`,{
+//     headers: {
+//       'Content-Type': 'application/json',
+//       "Access-Control-Allow-Origin": "*",
+//     },
+//     withCredentials: true
+//   }).then((response) => {
+//     msg.value = response.data
+// })
+// }
 
 onMounted(() => {
-  test()
+  // test()
 });
 </script>
 
@@ -45,6 +41,5 @@ onMounted(() => {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
