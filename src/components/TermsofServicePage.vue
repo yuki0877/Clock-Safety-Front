@@ -133,11 +133,6 @@
       <p>本サービスに関して紛争が生じた場合には，本店所在地を管轄する裁判所を専属的合意管轄とします。</p>
     </div>
   </div>
-
-  <footer class="footer">
-    <a href="#">利用規約</a> |
-    <a href="#">プライバシーポリシー</a>
-  </footer>
 </template>
 
 <script>

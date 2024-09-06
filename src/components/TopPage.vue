@@ -1,11 +1,6 @@
 <template>
   <!-- メインコンテンツ -->
   <div class="main-content">
-    <button @click="signIn">Sign In with Google</button>
-    <button @click="$router.push({ name: 'helth_index' })">テスト</button>
-    <p>Count: {{ counterStore.count }}</p>
-    <p>Doubled Count: {{ counterStore.doubleCount }}</p>
-    <button @click="counterStore.countUp()">Count up!</button>
     <!-- <img alt="15362.png" src="../assets/15362.png" class="image"> -->
     <div>
       <h1 class="large-text">Clock Safety</h1>
@@ -13,50 +8,39 @@
         Googleスマートウォッチから得られる健康管理データを使用して、離れて暮らす高齢家族が健康な状態で暮らしているのかを確認できるサービスです。
       </p>
     </div>
-    <div class="button-container">
-      <!-- ゲストログイン -->
-      <button class="guest-button">ゲストログイン</button>
-    </div>
   </div>
-  <!-- フッター -->
-  <footer class="footer">
-    <a href="#">利用規約</a> |
-    <a href="#">プライバシーポリシー</a>
-  </footer>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useCounterStore } from '../stores/counter.js'
+import { onMounted } from 'vue'
 import axios from 'axios'
 import 'normalize.css'
 import { supabase } from '../supabase'
 import { useAuthStore } from '../stores/auth'
 const auth = useAuthStore()
 axios.defaults.withCredentials = true
-const counterStore = useCounterStore()
 
-const msg = ref('')
+// const msg = ref('')
 
 onMounted(() => {
   console.log('foo')
-  test()
+  // test()
   fetchUser()
 })
 
-const test = () => {
-  axios
-    .get(`/api/v1/tests`, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      withCredentials: true,
-    })
-    .then((response) => {
-      msg.value = response.data
-    })
-}
+// const test = () => {
+//   axios
+//     .get(`/api/v1/tests`, {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-Origin': '*',
+//       },
+//       withCredentials: true,
+//     })
+//     .then((response) => {
+//       msg.value = response.data
+//     })
+// }
 
 async function fetchUser() {
   const { data, error } = await supabase.auth.getSession()
@@ -96,6 +80,17 @@ supabase.auth.onAuthStateChange(async (event, session) => {
 .main-content {
 }
 
+.text {
+  font-size: 30px;
+  text-decoration: underline;
+  text-decoration-color: rgb(243, 99, 9);
+  margin: 0 200px;
+}
+
+.main-content {
+  padding: 0 40px;
+}
+
 .image {
   width: 300px;
   height: auto;
@@ -104,13 +99,11 @@ supabase.auth.onAuthStateChange(async (event, session) => {
   margin-left: 20px;
 }
 .large-text {
-  font-size: 150px;
+  font-size: 120px;
   font-weight: bold;
   margin-top: 20px;
 }
-.text {
-  font-size: 30px;
-}
+
 .button-container {
   display: flex;
   justify-content: center;
