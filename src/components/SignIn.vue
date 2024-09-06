@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Sign In</h1>
+  <div class="container">
+    <h1>サインイン</h1>
     <!-- Googleログインボタン -->
     <button @click="signInWithGoogle" class="gsi-material-button">
       <div class="gsi-material-button-state"></div>
@@ -60,3 +60,13 @@ const signInWithGoogle = async () => {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+</style>
