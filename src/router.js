@@ -1,21 +1,30 @@
-// import { createRouter, createWebHistory } from 'vue-router'
-import { createRouter,createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
+// import { createRouter, createWebHashHistory } from 'vue-router'
 import HelthPage from './components/HelthPage.vue'
 import TopPage from './components/TopPage.vue'
+import SignIn from './components/SignIn.vue'
 import AnomaliesPage from './components/AnomaliesPage.vue'
 import PrivacyPolicyPage from './components/PrivacyPolicyPage.vue'
 import TermsofServicePage from './components/TermsofServicePage.vue'
+import AuthCallBack from './components/AuthCallBack.vue'
+// import NotFound from './components/NotFound.vue'
 
 const routes = [
   { path: '/', name: 'top', component: TopPage },
+  { path: '/auth/callback', name: 'callback', component: AuthCallBack },
+  { path: '/signin', name: 'sign_in', component: SignIn },
   { path: '/helth', name: 'helth_index', component: HelthPage },
   { path: '/anomalies', name: 'helth_anomalies', component: AnomaliesPage },
   { path: '/privacypolicy', name: 'privacypolicy', component: PrivacyPolicyPage },
   { path: '/termsofservice', name: 'termsofservice', component: TermsofServicePage },
+  // {
+  //   path: '/:catchAll(.*)', // これが新しいキャッチオールの書き方です
+  //   name: 'error404',
+  //   component: NotFound,
+  // },
 ]
-console.log(process.env.NODE_ENV);
 const router = createRouter({
-   history: createWebHashHistory(process.env.NODE_ENV === 'production' ? "/Clock-Safety-Front/" : "/"),
+  history: createWebHistory(process.env.NODE_ENV === 'production' ? '/Clock-Safety-Front/' : '/'),
   routes,
 })
 

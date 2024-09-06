@@ -1,38 +1,25 @@
 <template>
+  <!-- ヘッダー -->
+  <header class="header">
+    <ul style="display: flex; text-decoration: none">
+      <router-link style="font-size: 1.3rem; color: white; margin-right: 30px" to="/">{{ title }}</router-link>
+      <li v-if="auth.isLoggedIn">
+        <router-link style="color: white" to="/dashboard">Dashboard</router-link>
+      </li>
+      <li v-if="!auth.isLoggedIn">
+        <router-link style="color: white" to="/signin">SignIn</router-link>
+      </li>
+    </ul>
+  </header>
   <RouterView />
 </template>
 
 <script setup>
-// import HelloWorld from './components/HelloWorld.vue'
- import { onMounted } from 'vue'
-//  import axios from 'axios'
- import 'normalize.css'
-//  axios.defaults.withCredentials = true
-
-
-// const title = ref("Clock Safety")
-// const msg = ref("")
-
-// const test = () => {
-//   console.log(process.env.VUE_APP_API_BASE_URL);
-//   console.log(process.env.VUE_APP_API_BASE_URL);
-//   console.log(axios.defaults.baseURL);
-//   axios.get(`/api/v1/tests`,{
-//     headers: {
-//       'Content-Type': 'application/json',
-//       "Access-Control-Allow-Origin": "*",
-//     },
-//     withCredentials: true
-//   }).then((response) => {
-//     msg.value = response.data
-// })
-// }
-
-onMounted(() => {
-  // test()
-});
+import { ref } from 'vue'
+import { useAuthStore } from './stores/auth'
+const auth = useAuthStore()
+const title = ref('Clock Safety')
 </script>
-
 
 <style>
 #app {
