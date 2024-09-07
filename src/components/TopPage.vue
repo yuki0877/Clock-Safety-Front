@@ -2,8 +2,11 @@
   <!-- メインコンテンツ -->
   <div class="main-content">
     <!-- <img alt="15362.png" src="../assets/15362.png" class="image"> -->
-    <div>
-      <h1 class="large-text">Clock Safety</h1>
+
+    <div class="mt-4">
+      <v-row justify="center">
+        <h1 class="large-text">Clock Safety</h1>
+      </v-row>
       <p class="text">
         Googleスマートウォッチから得られる健康管理データを使用して、離れて暮らす高齢家族が健康な状態で暮らしているのかを確認できるサービスです。
       </p>
@@ -27,20 +30,6 @@ onMounted(() => {
   // test()
   fetchUser()
 })
-
-// const test = () => {
-//   axios
-//     .get(`/api/v1/tests`, {
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'Access-Control-Allow-Origin': '*',
-//       },
-//       withCredentials: true,
-//     })
-//     .then((response) => {
-//       msg.value = response.data
-//     })
-// }
 
 async function fetchUser() {
   const { data, error } = await supabase.auth.getSession()
