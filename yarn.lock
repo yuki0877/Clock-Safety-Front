@@ -2675,6 +2675,11 @@ cross-spawn@^7.0.2, cross-spawn@^7.0.3:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+crypto-js@^4.0.0, crypto-js@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.2.0.tgz#4d931639ecdfd12ff80e8186dba6af2c2e856631"
+  integrity sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==
+
 css-declaration-sorter@^6.3.1:
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/css-declaration-sorter/-/css-declaration-sorter-6.4.1.tgz#28beac7c20bad7f1775be3a7129d7eae409a3a71"
@@ -6206,6 +6211,13 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
+
+vue-cryptojs@^2.4.7:
+  version "2.4.7"
+  resolved "https://registry.yarnpkg.com/vue-cryptojs/-/vue-cryptojs-2.4.7.tgz#9e2dc48c7dbac610c70a361bc8dbb95433f7b2b9"
+  integrity sha512-/HDg1/SU3CLp9bPIbPlLOGJKrcqvp+W8gbCB8GVtnr6txf4vJof2CP4uAvPQMs0AkqyTYJE7agn6+LQA3LIg4A==
+  dependencies:
+    crypto-js "^4.0.0"
 
 vue-demi@^0.14.10:
   version "0.14.10"
