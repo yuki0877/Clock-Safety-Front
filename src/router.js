@@ -7,6 +7,7 @@ import AnomaliesPage from './components/AnomaliesPage.vue'
 import PrivacyPolicyPage from './components/PrivacyPolicyPage.vue'
 import TermsofServicePage from './components/TermsofServicePage.vue'
 import AuthCallBack from './components/AuthCallBack.vue'
+import FitBitCallBackPage from './components/FitBitCallBackPage.vue'
 // import NotFound from './components/NotFound.vue'
 
 const routes = [
@@ -16,7 +17,8 @@ const routes = [
   { path: '/helth', name: 'helth_index', component: HelthPage },
   { path: '/anomalies', name: 'helth_anomalies', component: AnomaliesPage },
   { path: '/privacypolicy', name: 'privacypolicy', component: PrivacyPolicyPage },
-  { path: '/termsofservice', name: 'termsofservice', component: TermsofServicePage },
+  { path: '/termsofservice', name: 'trouterermsofservice', component: TermsofServicePage },
+  { path: '/fitbit/callback', name: 'fitbit_callback', component: FitBitCallBackPage },
   // {
   //   path: '/:catchAll(.*)', // これが新しいキャッチオールの書き方です
   //   name: 'error404',
