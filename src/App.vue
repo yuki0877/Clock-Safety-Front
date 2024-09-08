@@ -24,9 +24,8 @@ const auth = useAuthStore()
 const getHeartRateToday = async (access_token) => {
   try {
     const userId = '-'
-    const date = 'today'
+    const date = '2024-09-08'
     const detailLevel = '15min'
-    // /1/user/[user-id]/activities/heart/date/[date]/1d/[detail-level]/time/[start-time]/[end-time].json
     const dataUrl = 'https://api.fitbit.com/' + ['1', 'user', userId, 'activities', 'heart', 'date', date, '1d', `${detailLevel}.json`].join('/')
 
     const dataResponse = await fetch(dataUrl, {
