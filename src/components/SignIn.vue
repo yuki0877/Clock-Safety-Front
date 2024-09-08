@@ -46,7 +46,7 @@ const signInWithGoogle = async () => {
   const { error, data } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `https://clock-safety-front-ipz0q3vfa-yukis-projects-6c960de1.vercel.app/auth/callback`,
+      redirectTo: `${window.location.origin}/auth/callback`,
       queryParams: {
         prompt: 'select_account',
       },
