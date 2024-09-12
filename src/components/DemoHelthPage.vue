@@ -14,41 +14,17 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
-import { supabase } from '../supabase'
 import axios from 'axios'
 
 onMounted(() => {
-  getUser()
+  fetchHeartData()
 })
 const sleeps = ref([])
 const heat_rates = ref([])
 
-async function getUser() {
-  try {
-    const { data, error } = await supabase.auth.getUser()
-
-    if (data) {
-      fetchHeartData(data)
-    }
-
-    if (error) {
-      console.error('認証エラー:', error.message)
-      // router.push({ name: 'signin' })
-    } else if (data) {
-      // ユーザーがセッションを持っている場合の処理
-      // router.push({ name: 'top' })
-    } else {
-      // セッションがない場合の処理
-      // router.push({ name: 'top' })
-    }
-  } catch (err) {
-    console.error('エラーが発生しました:', err)
-  }
-}
-
-const fetchHeartData = async (userData) => {
+const fetchHeartData = async () => {
   const params = {
-    email: userData.user.email,
+    email: 'akemi.sample.1203@gmail.com',
   }
   axios
     .get(`/api/v1/demo_healths`, {

@@ -9,41 +9,17 @@
 </template>
 <script setup>
 import { onMounted, ref } from 'vue'
-import { supabase } from '../supabase'
 import axios from 'axios'
 
 onMounted(() => {
-  getUser()
+  fetchanomalies()
 })
 
 const anomalies = ref([])
-async function getUser() {
-  try {
-    const { data, error } = await supabase.auth.getUser()
 
-    if (data) {
-      fetchanomalies(data.user.email)
-      // fetchToken(process.env.VUE_APP_VEIFIER, data)
-    }
-
-    if (error) {
-      console.error('認証エラー:', error.message)
-      // router.push({ name: 'signin' })
-    } else if (data) {
-      // ユーザーがセッションを持っている場合の処理
-      // router.push({ name: 'top' })
-    } else {
-      // セッションがない場合の処理
-      // router.push({ name: 'top' })
-    }
-  } catch (err) {
-    console.error('エラーが発生しました:', err)
-  }
-}
-
-const fetchanomalies = (email) => {
+const fetchanomalies = () => {
   const params = {
-    email: email,
+    email: 'akemi.sample.1203@gmail.com',
   }
 
   axios
