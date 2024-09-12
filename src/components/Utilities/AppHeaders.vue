@@ -17,7 +17,15 @@
       <li v-if="auth.isLoggedIn">
         <v-btn class="nav-link" @click="router.push({ name: 'helth_anomalies' })">異常値</v-btn>
       </li>
-      <button class="nav-link guest-login-button" @click="guestLogin">ゲストログイン</button>
+      <!-- <button class="nav-link guest-login-button" @click="guestLogin">ゲストログイン</button> -->
+
+      <!-- デモ -->
+      <li>
+        <v-btn class="nav-link" @click="router.push({ name: 'demo_helth' })">デモ健康データ</v-btn>
+      </li>
+      <li>
+        <v-btn class="nav-link" @click="router.push({ name: 'demo_anomalies' })">デモ異常値</v-btn>
+      </li>
     </ul>
   </header>
 </template>

@@ -10,11 +10,16 @@
       <p class="text">
         Googleスマートウォッチから得られる健康管理データを使用して、離れて暮らす高齢家族が健康な状態で暮らしているのかを確認できるサービスです。
       </p>
+
+      <v-row style="position: relative; top: 120px" class="mt-4" justify="center">
+        <v-btn @click="router.push({ name: 'demo_helth' })" color="orange" size="x-large">講師の方はこちらから</v-btn>
+      </v-row>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 import axios from 'axios'
 import 'normalize.css'
@@ -23,7 +28,7 @@ import { useAuthStore } from '../stores/auth'
 const auth = useAuthStore()
 axios.defaults.withCredentials = true
 
-// const msg = ref('')
+const router = useRouter()
 
 onMounted(() => {
   console.log('foo')

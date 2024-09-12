@@ -27,7 +27,6 @@ onMounted(() => {
 })
 
 async function fetchToken(verifier, userData) {
-  console.log('userData', userData)
   try {
     // const randomBytes = generateRandomBytes(64)
     // const verifier = base64UrlEncode(randomBytes)

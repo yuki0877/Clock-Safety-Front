@@ -1,28 +1,29 @@
 <template>
-  <div>
-    <h1>認証を処理しています...</h1>
+  <div class="main-content">
+    <h1>異常値表示ページ</h1>
+    <v-row>
+      <h3>心拍数</h3>
+      <v-data-table :headers="headers" :items="anomalies" class="elevation-1"></v-data-table>
+    </v-row>
   </div>
 </template>
-
 <script setup>
-import { onMounted } from 'vue'
-// import { useRouter } from 'vue-router'
+import { onMounted, ref } from 'vue'
 import { supabase } from '../supabase'
 import axios from 'axios'
-
-// const router = useRouter()
 
 onMounted(() => {
   getUser()
 })
 
+const anomalies = ref([])
 async function getUser() {
   try {
     const { data, error } = await supabase.auth.getUser()
 
     if (data) {
-      console.log('createに遷移')
-      createUser(data.user)
+      fetchanomalies(data.user.email)
+      // fetchToken(process.env.VUE_APP_VEIFIER, data)
     }
 
     if (error) {
@@ -40,9 +41,14 @@ async function getUser() {
   }
 }
 
-const createUser = (user) => {
+const fetchanomalies = (email) => {
+  const params = {
+    email: email,
+  }
+
   axios
-    .post(`/api/v1/users`, user, {
+    .get(`/api/v1/demo_anomalies`, {
+      params,
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -50,13 +56,20 @@ const createUser = (user) => {
       withCredentials: true,
     })
     .then((response) => {
-      if (response.status == 201) {
-        console.log('response', response)
-
-        const url =
-          'https://www.fitbit.com/oauth2/authorize?client_id=23PNS5&response_type=code&code_challenge=-4cf-Mzo_qg9-uq0F4QwWhRh4AjcAqNx7SbYVsdmyQM&code_challenge_method=S256&scope=activity%20heartrate%20location%20nutrition%20oxygen_saturation%20profile%20respiratory_rate%20settings%20sleep'
-        window.location.href = url
-      }
+      anomalies.value = response.data.demo_anomalies
     })
 }
+
+const headers = [
+  {
+    title: '日時',
+    key: 'abnormal_day',
+  },
+  {
+    title: '異常種類',
+    key: 'anomaly_type',
+  },
+  { title: '最小値', key: 'min' },
+  { title: '最大値', key: 'max' },
+]
 </script>
