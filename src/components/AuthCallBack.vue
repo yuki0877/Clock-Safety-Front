@@ -22,6 +22,7 @@ async function getUser() {
 
     if (data) {
       console.log('createに遷移')
+      console.log(data)
       createUser(data.user)
     }
 
