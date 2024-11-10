@@ -20,12 +20,12 @@
       <!-- <button class="nav-link guest-login-button" @click="guestLogin">ゲストログイン</button> -->
 
       <!-- デモ -->
-      <li>
+      <!-- <li>
         <v-btn class="nav-link" @click="router.push({ name: 'demo_helth' })">デモ健康データ</v-btn>
       </li>
       <li>
         <v-btn class="nav-link" @click="router.push({ name: 'demo_anomalies' })">デモ異常値</v-btn>
-      </li>
+      </li> -->
     </ul>
   </header>
 </template>

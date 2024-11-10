@@ -39,7 +39,7 @@ import { ref } from 'vue'
 import { supabase } from '../supabase'
 // import { useRouter } from 'vue-router'
 
-// const router = useRouter()
+// const router = useRouter()j
 const error = ref(null)
 
 const signInWithGoogle = async () => {

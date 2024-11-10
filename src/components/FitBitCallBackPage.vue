@@ -27,6 +27,7 @@ onMounted(() => {
 })
 
 async function fetchToken(verifier, userData) {
+  console.log('code', route.query.code)
   try {
     // const randomBytes = generateRandomBytes(64)
     // const verifier = base64UrlEncode(randomBytes)
@@ -54,6 +55,8 @@ async function fetchToken(verifier, userData) {
 
     const tokenBody = await tokenResponse.json()
 
+    console.log('userData', userData)
+
     if (tokenBody) {
       updateUser(tokenBody, userData)
     }
@@ -76,7 +79,6 @@ async function fetchToken(verifier, userData) {
     })
 
     const dataBody = await dataResponse.json()
-    console.log('dataBody', dataBody)
     if (dataBody.errors) {
       console.error(dataBody.errors[0].message)
       return
@@ -87,9 +89,10 @@ async function fetchToken(verifier, userData) {
 }
 
 const updateUser = (tokenBody, userData) => {
+  console.log('tokenBody', tokenBody)
   const params = {
     token_body: tokenBody,
-    email: userData.user.email,
+    user: userData.user,
   }
 
   axios
@@ -101,7 +104,6 @@ const updateUser = (tokenBody, userData) => {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response)
       router.push({ name: 'helth_index' })
     })
 }

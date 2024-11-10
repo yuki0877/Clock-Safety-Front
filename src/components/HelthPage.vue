@@ -3,12 +3,20 @@
   <div class="main-content mt-3">
     <v-row>
       <h3>心拍数</h3>
-      <v-data-table :headers="heartRateHeaders" :items="activityHearts" class="elevation-1"></v-data-table>
+      <v-data-table
+        :headers="guestUser ? GuestHeartRateHeaders : heartRateHeaders"
+        :items="guestUser ? guestHeatRates : activityHearts"
+        class="elevation-1"
+      ></v-data-table>
     </v-row>
 
     <v-row class="mt-4">
       <h3>睡眠</h3>
-      <v-data-table :headers="sleepHeaders" :items="sleeps" class="elevation-1"></v-data-table>
+      <v-data-table
+        :headers="guestUser ? GuestSleepHeaders : sleepHeaders"
+        :items="guestUser ? guestSleeps : sleeps"
+        class="elevation-1"
+      ></v-data-table>
     </v-row>
   </div>
 </template>
@@ -22,10 +30,14 @@ onMounted(() => {
 })
 const activityHearts = ref([])
 const sleeps = ref([])
+const guestUser = ref(null)
+const guestSleeps = ref([])
+const guestHeatRates = ref([])
 
 const userAuthenticate = (userData) => {
+  console.log(userData)
   const params = {
-    email: userData.user.email,
+    id: userData.user.id,
   }
   axios
     .get(`/api/v1/authenticates`, {
@@ -37,8 +49,14 @@ const userAuthenticate = (userData) => {
       withCredentials: true,
     })
     .then((response) => {
-      fetchHeartData(response.data.user.access_token)
-      fetchSleepData(response.data.user.access_token)
+      console.log(response.data.user)
+      if (response.data.user.access_token) {
+        fetchHeartData(response.data.user.access_token)
+        fetchSleepData(response.data.user.access_token)
+      } else {
+        fetchGuestHeartData(userData.user)
+        // fetchGuestSleepData()
+      }
       // fetchStep(response.data.user.access_token)
     })
 }
@@ -48,6 +66,7 @@ async function getUser() {
     const { data, error } = await supabase.auth.getUser()
 
     if (data) {
+      guestUser.value = data
       userAuthenticate(data)
     }
 
@@ -65,36 +84,6 @@ async function getUser() {
     console.error('エラーが発生しました:', err)
   }
 }
-
-// const fetchStep = async (access_token) => {
-//   const userId = '-'
-//   // const today = formatDate(new Date())
-//   const testDate = '2024-08-29'
-//   const dataUrl = 'https://api.fitbit.com/' + ['1', 'user', userId, 'activities', `steps`, `date`, `${testDate}`, `1d`, `15min.json`].join('/')
-
-//   try {
-
-//     const dataResponse = await fetch(dataUrl, {
-//       method: 'GET',
-//       headers: {
-//         Authorization: `Bearer ${access_token}`,
-//       },
-//     })
-
-//     const dataBody = await dataResponse.json()
-//     setStepData(dataBody)
-//     if (dataBody.errors) {
-//       console.error(dataBody.errors[0].message)
-//       return
-//     }
-//   } catch (err) {
-//     console.log(err)
-//   }
-// }
-
-// const setStepData = (stepData) => {
-//   console.log('stepData', stepData.activities)
-// }
 
 const fetchHeartData = async (access_token) => {
   try {
@@ -221,6 +210,48 @@ const sleepHeaders = [
   {
     title: '睡眠スコア',
     key: 'efficiency',
+  },
+]
+
+const fetchGuestHeartData = async (user) => {
+  const params = {
+    id: user.id,
+  }
+  axios
+    .get(`/api/v1/demo_healths`, {
+      params,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      withCredentials: true,
+    })
+    .then((response) => {
+      console.log('response', response)
+      guestHeatRates.value = response.data.demo_heat_rates
+      guestSleeps.value = response.data.demo_sleeps
+    })
+}
+
+const GuestHeartRateHeaders = [
+  { title: '日時', key: 'action_date' },
+  {
+    title: '平均心拍数',
+    key: 'avg_heart_rate',
+  },
+  { title: '最大心拍数', key: 'max_heart_rate' },
+  { title: '最低心拍数', key: 'min_heart_rate' },
+]
+
+const GuestSleepHeaders = [
+  {
+    title: '日時',
+    key: 'action_date',
+  },
+  { title: '睡眠時間', key: 'sleep_time' },
+  {
+    title: '睡眠スコア',
+    key: 'sleep_score',
   },
 ]
 </script>

@@ -22,7 +22,7 @@ const routes = [
   { path: '/privacypolicy', name: 'privacypolicy', component: PrivacyPolicyPage },
   { path: '/termsofservice', name: 'trouterermsofservice', component: TermsofServicePage },
   { path: '/fitbit/callback', name: 'fitbit_callback', component: FitBitCallBackPage },
-  { path: '/demo/helth', name: 'demo_helth', component: DemoHelthPage },
+  // { path: '/demo/helth', name: 'demo_helth', component: DemoHelthPage },
   { path: '/demo/anomalies', name: 'demo_anomalies', component: DemoAnomaliesPage },
   // {
   //   path: '/:catchAll(.*)', // これが新しいキャッチオールの書き方です

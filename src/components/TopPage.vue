@@ -12,7 +12,7 @@
       </p>
 
       <v-row style="position: relative; top: 120px" class="mt-4" justify="center">
-        <v-btn @click="router.push({ name: 'demo_helth' })" color="orange" size="x-large">講師の方はこちらから</v-btn>
+        <v-btn @click="guestLogin" color="orange" size="x-large">ゲストの方はこちらから</v-btn>
       </v-row>
     </div>
   </div>
@@ -35,6 +35,19 @@ onMounted(() => {
   // test()
   fetchUser()
 })
+
+const guestLogin = async () => {
+  const { error, data } = await supabase.auth.signInWithPassword({
+    email: 'mark_8556@yahoo.co.jp',
+    password: 'guest_taro0927',
+  })
+
+  router.push({ name: 'fitbit_callback', query: { code: 'b6117843c7c94350c8e659911dca9a1cba09731c#_=_' } })
+
+  if (error) {
+    console.error('Login failed:', error.message)
+  }
+}
 
 async function fetchUser() {
   const { data, error } = await supabase.auth.getSession()

@@ -21,8 +21,6 @@ async function getUser() {
     const { data, error } = await supabase.auth.getUser()
 
     if (data) {
-      console.log('createに遷移')
-      console.log(data)
       createUser(data.user)
     }
 

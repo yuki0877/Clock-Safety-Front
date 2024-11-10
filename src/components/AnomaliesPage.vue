@@ -39,6 +39,9 @@ const dialog = ref(false) // ダイアログの開閉状態を管理
 const email = ref('') // メールアドレスを管理
 const emailRules = [(v) => !!v || 'メールアドレスは必須です', (v) => /.+@.+\..+/.test(v) || '有効なメールアドレスを入力してください']
 const userEmal = ref(null)
+const authData = ref(null)
+const curretUser = ref(null)
+const guestUser = ref(null)
 
 onMounted(() => {
   getUser()
@@ -50,7 +53,14 @@ async function getUser() {
     const { data, error } = await supabase.auth.getUser()
 
     if (data) {
-      fetchanomalies(data.user.email)
+      authData.value = data
+      console.log(data.user)
+
+      if (data.user.email == 'mark_8556@yahoo.co.jp') {
+        fetchGuestAnomalies(data.user.id)
+      } else {
+        fetchanomalies(data.user.id)
+      }
       userEmal.value = data.user.email
     }
 
@@ -62,9 +72,9 @@ async function getUser() {
   }
 }
 
-const fetchanomalies = (email) => {
+const fetchanomalies = (id) => {
   const params = {
-    email: email,
+    id: id,
   }
 
   axios
@@ -78,18 +88,19 @@ const fetchanomalies = (email) => {
     })
     .then((response) => {
       anomalies.value = response.data.anomalies
+      curretUser.value = response.data.current_user
+      email.value = curretUser.value.email
     })
 }
 
 const submitEmail = async () => {
-  console.log('送信するメールアドレス:', email.value)
   if (email.value) {
     try {
       const response = await axios.post(
         '/api/v1/users/update_mails',
         {
-          email: email.value, // フロントエンドから送信するメールアドレス
-          current_user_email: userEmal.value,
+          email: email.value,
+          id: authData.value.user.id,
         },
         {
           headers: {
@@ -100,8 +111,9 @@ const submitEmail = async () => {
       )
 
       // 成功時の処理
-      console.log('メールアドレスが登録されました:', response.data)
-      dialog.value = false // ダイアログを閉じる
+      window.alert('メールアドレスが登録されました')
+      email.value = null
+      dialog.value = false
 
       // メールアドレス登録後の処理をここに追加することも可能です
     } catch (error) {
@@ -111,6 +123,25 @@ const submitEmail = async () => {
   } else {
     console.log('メールアドレスは必須です。')
   }
+}
+
+const fetchGuestAnomalies = (id) => {
+  const params = {
+    id: id,
+  }
+
+  axios
+    .get(`/api/v1/demo_anomalies`, {
+      params,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      withCredentials: true,
+    })
+    .then((response) => {
+      anomalies.value = response.data.demo_anomalies
+    })
 }
 
 const headers = [

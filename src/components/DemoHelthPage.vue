@@ -24,7 +24,7 @@ const heat_rates = ref([])
 
 const fetchHeartData = async () => {
   const params = {
-    email: 'akemi.sample.1203@gmail.com',
+    email: 'sample.2345@gmail.com',
   }
   axios
     .get(`/api/v1/demo_healths`, {
