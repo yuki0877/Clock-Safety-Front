@@ -1,6 +1,6 @@
 <template>
-  <!-- メインコンテンツ -->
   <div class="main-content mt-3">
+    <!-- :style="{ paddingBottom: '100px' }" -->
     <v-row>
       <h3>心拍数</h3>
       <v-data-table
@@ -23,6 +23,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../supabase'
+import { useAuthStore } from '../stores/auth'
 import axios from 'axios'
 
 onMounted(() => {
@@ -33,9 +34,9 @@ const sleeps = ref([])
 const guestUser = ref(null)
 const guestSleeps = ref([])
 const guestHeatRates = ref([])
+const auth = useAuthStore()
 
 const userAuthenticate = (userData) => {
-  console.log(userData)
   const params = {
     id: userData.user.id,
   }
@@ -49,7 +50,6 @@ const userAuthenticate = (userData) => {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response.data.user)
       if (response.data.user.access_token) {
         fetchHeartData(response.data.user.access_token)
         fetchSleepData(response.data.user.access_token)
@@ -66,7 +66,10 @@ async function getUser() {
     const { data, error } = await supabase.auth.getUser()
 
     if (data) {
-      guestUser.value = data
+      if (data.user.id == '12f86d95-2778-4cb8-b155-42fe2e02938b') {
+        guestUser.value = data
+      }
+      auth.setUser(data?.user ?? null)
       userAuthenticate(data)
     }
 
@@ -168,14 +171,11 @@ const setActivityHearts = (activities_hearts) => {
 const getStartAndEndDates = () => {
   const now = new Date()
 
-  // 現在の年月を取得
   const currentYear = now.getFullYear()
-  const currentMonth = now.getMonth() // 0-based month
+  const currentMonth = now.getMonth()
 
-  // 先月の初めの日付を計算
   const lastMonthStartDate = new Date(currentYear, currentMonth - 1, 1)
 
-  // 今月の末の日付を計算
   const thisMonthEndDate = new Date(currentYear, currentMonth + 1, 0)
 
   const formatDate = (date) => {

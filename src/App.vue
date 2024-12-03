@@ -1,10 +1,11 @@
 <template>
   <div>
     <AppHeaders></AppHeaders>
+    <div class="main">
+      <RouterView />
+    </div>
     <AppFooters></AppFooters>
   </div>
-
-  <RouterView />
 </template>
 
 <script setup>
@@ -117,3 +118,18 @@ const userAuthenticate = (userData) => {
     })
 }
 </script>
+
+<style scoped>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.main {
+  min-height: 100vh;
+  margin-bottom: 80px;
+}
+</style>

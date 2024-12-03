@@ -1,22 +1,52 @@
 <template>
-  <!-- メインコンテンツ -->
   <div class="main-content">
-    <!-- <img alt="15362.png" src="../assets/15362.png" class="image"> -->
+    <v-row justify="center">
+      <h1 class="large-text">Clock Safety</h1>
+    </v-row>
+    <p class="text">
+      離れて暮らす家族の健康を見守る安心のサービス。
+    </p>
+    <p class="text">
+      スマートウォッチの健康データを使って、家族の健康をチェックできます。
+    </p>
 
-    <div class="mt-4">
-      <v-row justify="center">
-        <h1 class="large-text">Clock Safety</h1>
-      </v-row>
+    <v-row justify="center" no-gutters class="mt-4 guest-login-row">
+
       <p class="text">
-        Googleスマートウォッチから得られる健康管理データを使用して、離れて暮らす高齢家族が健康な状態で暮らしているのかを確認できるサービスです。
+        ゲストログインで気軽に試してみませんか？
       </p>
+      <p class="text small-text">
+        ※ 本サービスはGoogleスマートウォッチを使用し、Fitbitに登録している方が対象です。
+      </p>
+      <v-btn @click="guestLogin" class="guest-login-btn">ゲストログインで試す</v-btn>
+    </v-row>
 
-      <v-row style="position: relative; top: 120px" class="mt-4" justify="center">
-        <v-btn @click="guestLogin" color="orange" size="x-large">ゲストの方はこちらから</v-btn>
-      </v-row>
+    <div class="mt-8 card">
+      <h2 class="section-heading">サービスの特徴</h2>
+      <ul class="feature-list">
+        <li>健康データを確認（心拍数・睡眠時間・歩数）</li>
+        <li>異常値検知時に通知</li>
+        <li>安心できる生活をサポート</li>
+      </ul>
     </div>
+
+    <div class="mt-8 card">
+      <h2 class="section-heading">ゲストログインでできること</h2>
+      <p class="text">
+        サンプルデータを使用して、Clock Safetyの機能をお試しください。
+      </p>
+    </div>
+
+    <section class="real-users-section">
+      <p class="info-text">
+        <strong>Fitbitユーザーの方へ</strong><br>
+        本サービスのすべての機能を利用するには、Googleログインが必要です。<br>
+        ヘッダーのログインボタンから開始してください。
+      </p>
+    </section>
   </div>
 </template>
+
 
 <script setup>
 import { useRouter } from 'vue-router'
@@ -69,183 +99,150 @@ supabase.auth.onAuthStateChange(async (event, session) => {
 </script>
 
 <style>
-.header {
-  background-color: #212529;
-  border-bottom: 1px solid #1b1e21;
-  padding: 15px 0;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 24px;
-  color: #fefefe;
-  text-align: left;
-  padding-left: 20px;
+.large-text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-/* メインコンテンツのスタイル */
 .main-content {
+  padding: 2rem;
+  text-align: center;
+}
+
+.large-text {
+  font-size: 8vw;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 
 .text {
-  font-size: 30px;
+  font-size: 1.2rem;
   text-decoration: underline;
   text-decoration-color: rgb(243, 99, 9);
-  margin: 0 200px;
+  margin: 0 auto;
+  max-width: 80%;
 }
 
-.main-content {
-  padding: 0 40px;
+.small-text {
+  font-size: 0.9rem;
+  color: gray;
+}
+.guest-login-row {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: 600px !important;
+  margin: 1.5rem auto !important;
+  padding: 1rem !important;
+  text-align: center !important;
+  background-color: #fbfde7 !important;
+  border: 2px solid #131211 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
 }
 
-.image {
-  width: 300px;
-  height: auto;
-  max-width: 100%;
-  float: right;
-  margin-left: 20px;
+
+.card {
+  background-color: #fbfde7;
+  border: 2px solid #131211;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 1rem auto;
+  max-width: 600px;
 }
-.large-text {
-  font-size: 120px;
+
+.section-heading {
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-top: 20px;
+  margin-bottom: 1rem;
 }
 
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
-}
-.gsi-material-button {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -webkit-appearance: none;
-  background-color: WHITE;
-  background-image: none;
-  border: 1px solid #747775;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  color: #1f1f1f;
-  cursor: pointer;
-  font-family: 'Roboto', arial, sans-serif;
-  font-size: 14px;
-  height: 40px;
-  letter-spacing: 0.25px;
-  outline: none;
-  overflow: hidden;
-  padding: 0 12px;
-  position: relative;
-  text-align: center;
-  -webkit-transition:
-    background-color 0.218s,
-    border-color 0.218s,
-    box-shadow 0.218s;
-  transition:
-    background-color 0.218s,
-    border-color 0.218s,
-    box-shadow 0.218s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: auto;
-  max-width: 400px;
-  min-width: min-content;
-}
-.gsi-material-button .gsi-material-button-icon {
-  height: 20px;
-  margin-right: 12px;
-  min-width: 20px;
-  width: 20px;
+.feature-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-.gsi-material-button .gsi-material-button-content-wrapper {
-  -webkit-align-items: center;
-  align-items: center;
-  display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  height: 100%;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-}
-.gsi-material-button .gsi-material-button-contents {
-  -webkit-flex-grow: 1;
-  flex-grow: 1;
-  font-family: 'Roboto', arial, sans-serif;
-  font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: top;
-}
-.gsi-material-button .gsi-material-button-state {
-  -webkit-transition: opacity 0.218s;
-  transition: opacity 0.218s;
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.gsi-material-button:disabled {
-  cursor: default;
-  background-color: #ffffff61;
-  border-color: #1f1f1f1f;
-}
-.gsi-material-button:disabled .gsi-material-button-contents {
-  opacity: 38%;
-}
-.gsi-material-button:disabled .gsi-material-button-icon {
-  opacity: 38%;
-}
-.gsi-material-button:not(:disabled):active .gsi-material-button-state,
-.gsi-material-button:not(:disabled):focus .gsi-material-button-state {
-  background-color: #303030;
-  opacity: 12%;
-}
-.gsi-material-button:not(:disabled):hover {
-  -webkit-box-shadow:
-    0 1px 2px 0 rgba(60, 64, 67, 0.3),
-    0 1px 3px 1px rgba(60, 64, 67, 0.15);
-  box-shadow:
-    0 1px 2px 0 rgba(60, 64, 67, 0.3),
-    0 1px 3px 1px rgba(60, 64, 67, 0.15);
-}
-.gsi-material-button:not(:disabled):hover .gsi-material-button-state {
-  background-color: #303030;
-  opacity: 8%;
-}
-/* ゲストログインボタンのスタイル */
-.guest-button {
-  background-color: #f0f0f0;
-  border: 1px solid #747775;
-  border-radius: 4px;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-family: 'Roboto', arial, sans-serif;
-}
-/* フッターのスタイル */
-.footer {
-  background-color: #212529;
-  padding: 20px 10px;
-  border-top: 1px solid #1b1e21;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.feature-list li {
+  font-size: 1rem;
+  margin: 0.5rem 0;
   text-align: center;
 }
-.footer a {
-  color: #fefefe;
-  text-decoration: none;
-  margin: 0 10px;
+
+.guest-login-btn {
+  background-color: orange;
+  color: rgb(255, 255, 255);
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: transform 0.2s, background-color 0.2s;
 }
-.footer a:hover {
-  text-decoration: underline;
+
+.guest-login-btn:hover {
+  transform: scale(1.05);
+  background-color: darkorange;
+}
+
+.real-users-section {
+  margin-top: 3rem;
+  background-color:#e0e0e0;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.info-text {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .large-text {
+    font-size: 6vw;
+  }
+  .text {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+  .section-heading {
+    font-size: 1.3rem;
+  }
+  .feature-list li {
+    font-size: 0.9rem;
+  }
+  .info-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .large-text {
+    font-size: 5vw;
+  }
+  .text {
+    font-size: 0.9rem;
+  }
+  .section-heading {
+    font-size: 1.1rem;
+  }
+  .info-text {
+    font-size: 0.8rem;
+  }
 }
 </style>
