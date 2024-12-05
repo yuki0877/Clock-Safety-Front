@@ -1,9 +1,8 @@
 <template>
-  <!-- メインコンテンツ -->
   <div class="main-content">
     <h1>プライバシーポリシー</h1>
     <p>
-      Clock Safety（以下「当社」といいます）は、当社が提供するウェブアプリケーションにおいて、Googleスマートウォッチを通じて取得した個人情報の取り扱いに関し、個人情報保護法、ガイドライン等の指針、その他個人情報保護に関する関係法令を遵守します。
+      Clock Safety（以下「当社」といいます）は、当社が提供するウェブアプリケーションにおいて、GoogleスマートウォッチおよびFitbitから取得した個人情報の取り扱いに関し、個人情報保護法、ガイドライン等の指針、その他個人情報保護に関する関係法令を遵守します。
     </p>
 
     <h2>1．取得する情報およびその取得方法、利用目的</h2>
@@ -11,7 +10,7 @@
       当社が取得するユーザー情報は、以下の目的で使用されます。
     </p>
     <ul>
-      <li>Googleスマートウォッチから取得した心拍数、睡眠データ、アクティビティデータの収集および管理</li>
+      <li>GoogleスマートウォッチおよびFitbitから取得した心拍数、睡眠データ、アクティビティデータの収集および管理</li>
       <li>遠方に住む親御さんの健康状態のモニタリングおよび異常値の通知</li>
       <li>健康データの分析および予防的な健康管理の支援</li>
       <li>サービス向上のためのデータ分析および機能改善</li>
@@ -46,10 +45,13 @@
     <p>
       本サービス、個人情報の取り扱いについては、以下の窓口にご連絡ください。
     </p>
+    <p>
+      メールアドレス: <a href="mailto:clock.safety.1@gmail.com">clock.safety.1@gmail.com</a>
+    </p>
 
     <h2>6．制定日、改定日</h2>
-    <p>制定日：年 月 日</p>
-    <p>改定日：年 月 日</p>
+    <p>制定日：2024年11月26日</p>
+    <p>改定日：[改定日] - 改定内容：プライバシーポリシーの更新を行いました。</p>
 
   </div>
 </template>
@@ -59,3 +61,31 @@ export default {
   name: 'PrivacyPolicyPage'
 }
 </script>
+
+<style scoped>
+.main-content {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  text-align: left;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-top: 20px;
+  color: #333;
+}
+
+ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+p {
+  margin-bottom: 15px;
+}
+</style>

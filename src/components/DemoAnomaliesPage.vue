@@ -19,7 +19,7 @@ const anomalies = ref([])
 
 const fetchanomalies = () => {
   const params = {
-    email: 'akemi.sample.1203@gmail.com',
+    email: 'sample.2345@gmail.com',
   }
 
   axios

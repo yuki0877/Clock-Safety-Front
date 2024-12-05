@@ -1,7 +1,5 @@
 <template>
   <div class="container">
-    <h1>サインイン</h1>
-    <!-- Googleログインボタン -->
     <button @click="signInWithGoogle" class="gsi-material-button">
       <div class="gsi-material-button-state"></div>
       <div class="gsi-material-button-content-wrapper">
@@ -26,8 +24,8 @@
             <path fill="none" d="M0 0h48v48H0z"></path>
           </svg>
         </div>
-        <span class="gsi-material-button-contents">Googleでサインイン</span>
-        <span style="display: none">Googleでサインイン</span>
+        <span class="gsi-material-button-contents">Google ログイン</span>
+        <span style="display: none">Google</span>
       </div>
     </button>
     <p v-if="error">{{ error }}</p>
@@ -39,7 +37,7 @@ import { ref } from 'vue'
 import { supabase } from '../supabase'
 // import { useRouter } from 'vue-router'
 
-// const router = useRouter()
+// const router = useRouter()j
 const error = ref(null)
 
 const signInWithGoogle = async () => {
