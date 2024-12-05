@@ -3,21 +3,12 @@
     <v-row justify="center">
       <h1 class="large-text">Clock Safety</h1>
     </v-row>
-    <p class="text">
-      離れて暮らす家族の健康を見守る安心のサービス。
-    </p>
-    <p class="text">
-      スマートウォッチの健康データを使って、家族の健康をチェックできます。
-    </p>
+    <p class="text">離れて暮らす家族の健康を見守る安心のサービス。</p>
+    <p class="text">スマートウォッチの健康データを使って、家族の健康をチェックできます。</p>
 
     <v-row justify="center" no-gutters class="mt-4 guest-login-row">
-
-      <p class="text">
-        ゲストログインで気軽に試してみませんか？
-      </p>
-      <p class="text small-text">
-        ※ 本サービスはGoogleスマートウォッチを使用し、Fitbitに登録している方が対象です。
-      </p>
+      <p class="text">ゲストログインで気軽に試してみませんか？</p>
+      <p class="text small-text">※ 本サービスはGoogleスマートウォッチを使用し、Fitbitに登録している方が対象です。</p>
       <v-btn @click="guestLogin" class="guest-login-btn">ゲストログインで試す</v-btn>
     </v-row>
 
@@ -32,21 +23,18 @@
 
     <div class="mt-8 card">
       <h2 class="section-heading">ゲストログインでできること</h2>
-      <p class="text">
-        サンプルデータを使用して、Clock Safetyの機能をお試しください。
-      </p>
+      <p class="text">サンプルデータを使用して、Clock Safetyの機能をお試しください。</p>
     </div>
 
     <section class="real-users-section">
       <p class="info-text">
-        <strong>Fitbitユーザーの方へ</strong><br>
-        本サービスのすべての機能を利用するには、Googleログインが必要です。<br>
+        <strong>Fitbitユーザーの方へ</strong><br />
+        本サービスのすべての機能を利用するには、Googleログインが必要です。<br />
         ヘッダーのログインボタンから開始してください。
       </p>
     </section>
   </div>
 </template>
-
 
 <script setup>
 import { useRouter } from 'vue-router'
@@ -67,7 +55,7 @@ onMounted(() => {
 })
 
 const guestLogin = async () => {
-  const { error, data } = await supabase.auth.signInWithPassword({
+  const { error } = await supabase.auth.signInWithPassword({
     email: 'mark_8556@yahoo.co.jp',
     password: 'guest_taro0927',
   })
@@ -146,7 +134,6 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
 }
 
-
 .card {
   background-color: #fbfde7;
   border: 2px solid #131211;
@@ -180,7 +167,9 @@ body {
   color: rgb(255, 255, 255);
   font-size: 1rem;
   border-radius: 4px;
-  transition: transform 0.2s, background-color 0.2s;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
 }
 
 .guest-login-btn:hover {
@@ -190,7 +179,7 @@ body {
 
 .real-users-section {
   margin-top: 3rem;
-  background-color:#e0e0e0;
+  background-color: #e0e0e0;
   padding: 1.5rem;
   border-radius: 10px;
 }
