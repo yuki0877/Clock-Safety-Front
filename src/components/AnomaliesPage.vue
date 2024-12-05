@@ -41,7 +41,6 @@ const emailRules = [(v) => !!v || 'メールアドレスは必須です', (v) =>
 const userEmal = ref(null)
 const authData = ref(null)
 const curretUser = ref(null)
-const guestUser = ref(null)
 
 onMounted(() => {
   getUser()
@@ -96,7 +95,7 @@ const fetchanomalies = (id) => {
 const submitEmail = async () => {
   if (email.value) {
     try {
-      const response = await axios.post(
+      await axios.post(
         '/api/v1/users/update_mails',
         {
           email: email.value,

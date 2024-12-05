@@ -103,7 +103,7 @@ const updateUser = (tokenBody, userData) => {
       },
       withCredentials: true,
     })
-    .then((response) => {
+    .then(() => {
       router.push({ name: 'helth_index' })
     })
 }
