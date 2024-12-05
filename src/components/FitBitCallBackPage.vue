@@ -48,12 +48,13 @@ async function fetchToken(verifier, userData) {
         client_id: process.env.VUE_APP_CLIENT_ID,
         code: route.query.code,
         code_verifier: verifier,
-        redirect_uri: process.env.VUE_APP_REDIRECT_URL,
+        // redirect_uri: process.env.VUE_APP_REDIRECT_URL,
         grant_type: 'authorization_code',
       }).toString(),
     })
 
     const tokenBody = await tokenResponse.json()
+    console.log('tokenBody', tokenBody)
 
     console.log('userData', userData)
 
