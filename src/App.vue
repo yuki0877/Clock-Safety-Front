@@ -12,111 +12,111 @@
 import { onMounted } from 'vue'
 import AppFooters from './components/Utilities/AppFooters.vue'
 import AppHeaders from './components/Utilities/AppHeaders.vue'
-import { supabase } from './supabase'
-import { useAuthStore } from './stores/auth'
-import axios from 'axios'
+// import { supabase } from './supabase'
+// import { useAuthStore } from './stores/auth'
+// import axios from 'axios'
 
 onMounted(() => {
-  getUser()
+  // getUser()
 })
 
-const auth = useAuthStore()
+// const auth = useAuthStore()
 
-const getHeartRateToday = async (access_token) => {
-  try {
-    const userId = '-'
-    const date = '2024-09-08'
-    const detailLevel = '15min'
-    const dataUrl = 'https://api.fitbit.com/' + ['1', 'user', userId, 'activities', 'heart', 'date', date, '1d', `${detailLevel}.json`].join('/')
+// const getHeartRateToday = async (access_token) => {
+//   try {
+//     const userId = '-'
+//     const date = '2024-09-08'
+//     const detailLevel = '15min'
+//     const dataUrl = 'https://api.fitbit.com/' + ['1', 'user', userId, 'activities', 'heart', 'date', date, '1d', `${detailLevel}.json`].join('/')
 
-    const dataResponse = await fetch(dataUrl, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    })
+//     const dataResponse = await fetch(dataUrl, {
+//       method: 'GET',
+//       headers: {
+//         Authorization: `Bearer ${access_token}`,
+//       },
+//     })
 
-    const dataBody = await dataResponse.json()
-    const dateTime = dataBody['activities-heart'][0].dateTime
-    const todayHeartDate = dataBody['activities-heart'][0].value.heartRateZones.find((zone) => zone.name == 'Out of Range')
-    const maxNum = 145
-    const minNum = 50
-    if (todayHeartDate.max >= maxNum) {
-      // 異常値登録
-      createAnomaly({ max: todayHeartDate.max, abnormal_day: dateTime })
-    }
-    if (todayHeartDate.min <= minNum) {
-      // 異常値登録
-      createAnomaly({ min: todayHeartDate.min, abnormal_day: dateTime })
-    }
-    if (dataBody.errors) {
-      console.error(dataBody.errors[0].message)
-      return
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
+//     const dataBody = await dataResponse.json()
+//     const dateTime = dataBody['activities-heart'][0].dateTime
+//     const todayHeartDate = dataBody['activities-heart'][0].value.heartRateZones.find((zone) => zone.name == 'Out of Range')
+//     const maxNum = 145
+//     const minNum = 50
+//     if (todayHeartDate.max >= maxNum) {
+//       // 異常値登録
+//       createAnomaly({ max: todayHeartDate.max, abnormal_day: dateTime })
+//     }
+//     if (todayHeartDate.min <= minNum) {
+//       // 異常値登録
+//       createAnomaly({ min: todayHeartDate.min, abnormal_day: dateTime })
+//     }
+//     if (dataBody.errors) {
+//       console.error(dataBody.errors[0].message)
+//       return
+//     }
+//   } catch (err) {
+//     console.log(err)
+//   }
+// }
 
-const createAnomaly = (anomalyData, abnormalDay) => {
-  const params = {
-    anomalies: anomalyData,
-    abnormalDay,
-    email: auth.isLoggedIn.email,
-  }
-  axios
-    .post(`/api/v1/anomalies`, params, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      withCredentials: true,
-    })
-    .then(() => {})
-}
+// const createAnomaly = (anomalyData, abnormalDay) => {
+//   const params = {
+//     anomalies: anomalyData,
+//     abnormalDay,
+//     email: auth.isLoggedIn.email,
+//   }
+//   axios
+//     .post(`/api/v1/anomalies`, params, {
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-Origin': '*',
+//       },
+//       withCredentials: true,
+//     })
+//     .then(() => {})
+// }
 
-async function getUser() {
-  try {
-    const { data, error } = await supabase.auth.getUser()
+// async function getUser() {
+//   try {
+//     const { data, error } = await supabase.auth.getUser()
 
-    if (data) {
-      userAuthenticate(data)
-    }
+//     if (data) {
+//       userAuthenticate(data)
+//     }
 
-    if (error) {
-      console.error('認証エラー:', error.message)
-      // router.push({ name: 'signin' })
-    } else if (data) {
-      // ユーザーがセッションを持っている場合の処理
-      // router.push({ name: 'top' })
-    } else {
-      // セッションがない場合の処理
-      // router.push({ name: 'top' })
-    }
-  } catch (err) {
-    console.error('エラーが発生しました:', err)
-  }
-}
+//     if (error) {
+//       console.error('認証エラー:', error.message)
+//       // router.push({ name: 'signin' })
+//     } else if (data) {
+//       // ユーザーがセッションを持っている場合の処理
+//       // router.push({ name: 'top' })
+//     } else {
+//       // セッションがない場合の処理
+//       // router.push({ name: 'top' })
+//     }
+//   } catch (err) {
+//     console.error('エラーが発生しました:', err)
+//   }
+// }
 
-const userAuthenticate = (userData) => {
-  const params = {
-    email: userData.user.email,
-  }
-  axios
-    .get(`/api/v1/authenticates`, {
-      params,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      withCredentials: true,
-    })
-    .then((response) => {
-      if (response.data.user) {
-        getHeartRateToday(response.data.user.access_token)
-      }
-    })
-}
+// const userAuthenticate = (userData) => {
+//   const params = {
+//     email: userData.user.email,
+//   }
+//   axios
+//     .get(`/api/v1/authenticates`, {
+//       params,
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Access-Control-Allow-Origin': '*',
+//       },
+//       withCredentials: true,
+//     })
+//     .then((response) => {
+//       if (response.data.user) {
+//         getHeartRateToday(response.data.user.access_token)
+//       }
+//     })
+// }
 </script>
 
 <style scoped>
