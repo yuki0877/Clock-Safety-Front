@@ -90,7 +90,7 @@ async function fetchToken(verifier, userData) {
 }
 
 const updateUser = (tokenBody, userData) => {
-  console.log('tokenBody', tokenBody)
+  console.log('updateUser')
   const params = {
     token_body: tokenBody,
     user: userData.user,
