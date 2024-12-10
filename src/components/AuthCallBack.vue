@@ -63,9 +63,10 @@ const createUser = (user) => {
       if (response.status == 201) {
         console.log('createUser: ユーザー作成に成功しました。Fitbit認証ページにリダイレクトします'); // ユーザー作成成功時のログ
 
-        const url =
-          'https://www.fitbit.com/oauth2/authorize?client_id=23PNS5&response_type=code&code_challenge=-4cf-Mzo_qg9-uq0F4QwWhRh4AjcAqNx7SbYVsdmyQM&code_challenge_method=S256&scope=activity%20heartrate%20location%20nutrition%20oxygen_saturation%20profile%20respiratory_rate%20settings%20sleep'
-        window.location.href = url;
+        // リダイレクトを一時的に停止
+        // const url =
+        //   'https://www.fitbit.com/oauth2/authorize?client_id=23PNS5&response_type=code&code_challenge=-4cf-Mzo_qg9-uq0F4QwWhRh4AjcAqNx7SbYVsdmyQM&code_challenge_method=S256&scope=activity%20heartrate%20location%20nutrition%20oxygen_saturation%20profile%20respiratory_rate%20settings%20sleep'
+        // window.location.href = url;
       }
     })
     .catch((error) => {
