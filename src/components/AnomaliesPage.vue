@@ -53,7 +53,6 @@ async function getUser() {
 
     if (data) {
       authData.value = data
-      console.log(data.user)
 
       if (data.user.email == 'mark_8556@yahoo.co.jp') {
         fetchGuestAnomalies(data.user.id)

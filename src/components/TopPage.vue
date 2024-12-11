@@ -49,7 +49,7 @@ axios.defaults.withCredentials = true
 const router = useRouter()
 
 onMounted(() => {
-  console.log('foo')
+  //console.log('foo')
   // test()
   fetchUser()
 })

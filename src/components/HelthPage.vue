@@ -74,7 +74,7 @@ async function getUser() {
     }
 
     if (error) {
-      console.error('認証エラー:', error.message)
+      //console.error('認証エラー:', error.message)
       // router.push({ name: 'signin' })
     } else if (data) {
       // ユーザーがセッションを持っている場合の処理
@@ -84,7 +84,7 @@ async function getUser() {
       // router.push({ name: 'top' })
     }
   } catch (err) {
-    console.error('エラーが発生しました:', err)
+    //console.error('エラーが発生しました:', err)
   }
 }
 
@@ -109,7 +109,7 @@ const fetchHeartData = async (access_token) => {
       return
     }
   } catch (err) {
-    console.log(err)
+    //console.log(err)
   }
 }
 const fetchSleepData = async (access_token) => {
@@ -227,7 +227,7 @@ const fetchGuestHeartData = async (user) => {
       withCredentials: true,
     })
     .then((response) => {
-      console.log('response', response)
+      //console.log('response', response)
       guestHeatRates.value = response.data.demo_heat_rates
       guestSleeps.value = response.data.demo_sleeps
     })

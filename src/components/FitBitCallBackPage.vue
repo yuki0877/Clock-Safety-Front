@@ -13,7 +13,6 @@ import { supabase } from '../supabase'
 const route = useRoute()
 const router = useRouter()
 // const auth = useAuthStore()
-// import { supabase } from '../supabase'
 
 onMounted(() => {
   //   const randomBytes = generateRandomBytes(64)
@@ -27,7 +26,6 @@ onMounted(() => {
 })
 
 async function fetchToken(verifier, userData) {
-  console.log('code', route.query.code)
   try {
     // const randomBytes = generateRandomBytes(64)
     // const verifier = base64UrlEncode(randomBytes)
@@ -54,9 +52,7 @@ async function fetchToken(verifier, userData) {
     })
 
     const tokenBody = await tokenResponse.json()
-    console.log('tokenBody', tokenBody)
 
-    console.log('userData', userData)
 
     if (tokenBody) {
       updateUser(tokenBody, userData)
@@ -67,30 +63,29 @@ async function fetchToken(verifier, userData) {
       return
     }
 
-    // const userId = '-'
-    // const date = 'today'
-    // const detailLevel = '1sec'
-    // const dataUrl = 'https://api.fitbit.com/' + ['1', 'user', userId, 'activities', 'heart', 'date', date, '1d', `${detailLevel}.json`].join('/')
+    const userId = '-'
+    const date = 'today'
+    const detailLevel = '1sec'
+    const dataUrl = 'https://api.fitbit.com/' + ['1', 'user', userId, 'activities', 'heart', 'date', date, '1d', `${detailLevel}.json`].join('/')
 
-    // const dataResponse = await fetch(dataUrl, {
-    //   method: 'GET',
-    //   headers: {
-    //     Authorization: `Bearer ${tokenBody['access_token']}`,
-    //   },
-    // })
+    const dataResponse = await fetch(dataUrl, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${tokenBody['access_token']}`,
+      },
+    })
 
-    // const dataBody = await dataResponse.json()
-    // if (dataBody.errors) {
-    //   console.error(dataBody.errors[0].message)
-    //   return
-    // }
+    const dataBody = await dataResponse.json()
+    if (dataBody.errors) {
+      console.error(dataBody.errors[0].message)
+      return
+    }
   } catch (err) {
     console.log(err)
   }
 }
 
 const updateUser = (tokenBody, userData) => {
-  console.log('updateUser')
   const params = {
     token_body: tokenBody,
     user: userData.user,
