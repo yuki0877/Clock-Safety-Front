@@ -50,7 +50,8 @@ const userAuthenticate = (userData) => {
       withCredentials: true,
     })
     .then((response) => {
-      if (response.data.user.access_token) {
+      console.log(response)
+      if (response.data.user.name != 'ゲスト様') {
         fetchHeartData(response.data.user.access_token)
         fetchSleepData(response.data.user.access_token)
       } else {
